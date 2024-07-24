@@ -8,7 +8,8 @@ import {
   streamUI,
   createStreamableValue
 } from 'ai/rsc'
-import { openai } from '@ai-sdk/openai'
+// import { openai } from '@ai-sdk/openai'
+import { anthropic } from '@ai-sdk/anthropic'
 
 import {
   spinner,
@@ -124,9 +125,12 @@ async function submitUserMessage(content: string) {
 
   let textStream: undefined | ReturnType<typeof createStreamableValue<string>>
   let textNode: undefined | React.ReactNode
+  let llm_chat_model = anthropic('claude-3-sonnet-20240229')
+  // let llm_chat_model = openai('gpt-4o')
+
 
   const result = await streamUI({
-    model: openai('gpt-4o'),
+    model: llm_chat_model,
     initial: <SpinnerMessage />,
     system: `\
 You are Cora, an advanced AI assistant designed with a heart-centered
