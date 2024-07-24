@@ -9,19 +9,30 @@ import { Header } from '@/components/header'
 import { Toaster } from '@/components/ui/sonner'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
+const logoUrl = 'https://d1xiic2ql9d7gm.cloudfront.net/logo_cora.png'
+
 export const metadata = {
-  metadataBase: process.env.VERCEL_URL
-    ? new URL(`https://${process.env.VERCEL_URL}`)
-    : undefined,
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : `http://localhost:${process.env.PORT || 3000}`
+  ),
   title: {
-    default: 'Next.js AI Chatbot',
-    template: `%s - Next.js AI Chatbot`
+    default: 'Cora 🤖 + 💙',
+    template: `%s - Cora 🤖 + 💙`
   },
-  description: 'An AI-powered chatbot template built with Next.js and Vercel.',
+  description: 'Cora: Intelligence with a Heart. Experience AI that transcends data, embracing empathy and wisdom.',
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png'
+    icon: logoUrl,
+    shortcut: logoUrl,
+    apple: logoUrl
+  },
+  openGraph: {
+    images: [logoUrl]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [logoUrl]
   }
 }
 
